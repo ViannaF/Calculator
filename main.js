@@ -128,6 +128,7 @@ function clearCalculator() {
   operator = "";
   updateDisplay();
   clearBtn.textContent = "AC";
+  removeActiveOperator();
 }
 
 // Highlight the active operator button
