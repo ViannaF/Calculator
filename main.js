@@ -71,8 +71,10 @@ function handleOperator(op) {
   }
   // Update operator to most recent operator button pressed
   operator = op;
-  displayValue = previousNumber;
-  updateDisplay();
+  if (previousNumber) {
+    displayValue = previousNumber;
+    updateDisplay();
+  }
 }
 
 // Perform the calculation based on the operator
