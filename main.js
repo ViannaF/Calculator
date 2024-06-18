@@ -55,6 +55,7 @@ function handleNumber(number) {
     currentNumber += number;
     displayValue = currentNumber;
     updateDisplay();
+    clearBtn.textContent = "C";
   }
 }
 
@@ -120,4 +121,5 @@ function clearCalculator() {
   currentNumber = "";
   operator = "";
   updateDisplay();
+  clearBtn.textContent = "AC";
 }
