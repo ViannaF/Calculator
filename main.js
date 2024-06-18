@@ -3,6 +3,7 @@ let previousNumber = "";
 let currentNumber = "";
 let operator = "";
 let displayValue = "0";
+let activeOperatorButton = null;
 
 // Dom elements
 const numbers = document.querySelectorAll(".number");
@@ -18,6 +19,7 @@ display.textContent = "0";
 numbers.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     handleNumber(event.target.textContent);
+    removeActiveOperator();
   });
 });
 
@@ -25,6 +27,7 @@ numbers.forEach((btn) => {
 operators.forEach((btn) => {
   btn.addEventListener("click", (event) => {
     handleOperator(event.target.textContent);
+    setActiveOperator(event.target);
   });
 });
 
@@ -34,6 +37,7 @@ equalOp.addEventListener("click", () => {
     operate();
     operator = "";
   }
+  removeActiveOperator();
 });
 
 // Event listener for the decimal button
@@ -72,6 +76,8 @@ function handleOperator(op) {
   }
   // Update operator to most recent operator button pressed
   operator = op;
+
+  // Only update display if previous number is not empty
   if (previousNumber) {
     displayValue = previousNumber;
     updateDisplay();
@@ -122,4 +128,19 @@ function clearCalculator() {
   operator = "";
   updateDisplay();
   clearBtn.textContent = "AC";
+}
+
+// Highlight the active operator button
+function setActiveOperator(button) {
+  removeActiveOperator(); // Remove highlight from previous operator
+  button.classList.add("active-operator");
+  activeOperatorButton = button;
+}
+
+// Remove the highlight from the active operator button
+function removeActiveOperator() {
+  if (activeOperatorButton) {
+    activeOperatorButton.classList.remove("active-operator");
+    activeOperatorButton = null;
+  }
 }

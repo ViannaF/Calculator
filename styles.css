@@ -88,3 +88,8 @@ button:active {
 .row {
   flex: 1 0 auto;
 }
+
+.active-operator {
+  background-color: white;
+  color: orange;
+}
